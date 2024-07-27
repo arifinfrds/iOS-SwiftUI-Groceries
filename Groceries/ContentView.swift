@@ -7,6 +7,7 @@ struct ContentView: View {
     @Query private var groceries: [GroceryItem]
     @State private var newGroceryName: String = ""
     @State private var showAlert = false
+    @State private var showDeleteAllAlert = false
     
     var body: some View {
         NavigationView {
@@ -17,7 +18,7 @@ struct ContentView: View {
                     ForEach(groceries) { grocery in
                         Text(grocery.name)
                     }
-                    .onDelete(perform: removeGrocery)
+                    .onDelete(perform: deleteGrocery)
                 }
             }
             .navigationTitle("Groceries")
@@ -31,7 +32,7 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        removeAllGroceries()
+                        showDeleteAllAlert = true
                     }) {
                         Image(systemName: "trash")
                     }
@@ -40,6 +41,12 @@ struct ContentView: View {
             .alert("Add Grocery", isPresented: $showAlert, actions: {
                 TextField("Grocery name", text: $newGroceryName)
                 Button("Add", action: addGrocery)
+                    .keyboardShortcut(.defaultAction)
+                Button("Cancel", role: .cancel, action: {})
+            })
+            .alert("Delete All Groceries", isPresented: $showDeleteAllAlert, actions: {
+                Text("Are you sure you want to delete all items?")
+                Button("Delete", role: .destructive, action: deleteAllGroceries)
                     .keyboardShortcut(.defaultAction)
                 Button("Cancel", role: .cancel, action: {})
             })
@@ -61,13 +68,13 @@ struct ContentView: View {
         newGroceryName = ""
     }
     
-    private func removeGrocery(at offsets: IndexSet) {
+    private func deleteGrocery(at offsets: IndexSet) {
         offsets.forEach { index in
             modelContext.delete(groceries[index])
         }
     }
     
-    private func removeAllGroceries() {
+    private func deleteAllGroceries() {
         groceries.forEach { grocery in
             modelContext.delete(grocery)
         }
