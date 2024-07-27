@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                if groceries.isEmpty Z{
+                if groceries.isEmpty {
                     emptyView
                 } else {
                     ForEach(groceries) { grocery in
