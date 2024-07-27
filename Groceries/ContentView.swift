@@ -1,66 +1,67 @@
-//
-//  ContentView.swift
-//  Groceries
-//
-//  Created by arifin on 27/07/24.
-//
-
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @Query private var groceries: [GroceryItem]
+    @State private var newGroceryName: String = ""
+    @State private var showAlert = false
+    
     var body: some View {
-        NavigationSplitView {
+        NavigationView {
             List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+                ForEach(groceries) { grocery in
+                    Text(grocery.name)
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: removeGrocery)
             }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
+            .navigationTitle("Groceries")
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showAlert = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
                 }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        removeAllGroceries()
+                    }) {
+                        Image(systemName: "trash")
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
+            .alert("Add Grocery", isPresented: $showAlert, actions: {
+                TextField("Grocery name", text: $newGroceryName)
+                Button("Add", action: addGrocery)
+                Button("Cancel", role: .cancel, action: {})
+            })
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+    
+    private func addGrocery() {
+        guard !newGroceryName.isEmpty else { return }
+        let newItem = GroceryItem(name: newGroceryName)
+        modelContext.insert(newItem)
+        newGroceryName = ""
+    }
+    
+    private func removeGrocery(at offsets: IndexSet) {
+        offsets.forEach { index in
+            modelContext.delete(groceries[index])
         }
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+    
+    private func removeAllGroceries() {
+        groceries.forEach { grocery in
+            modelContext.delete(grocery)
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: GroceryItem.self, inMemory: true)
 }

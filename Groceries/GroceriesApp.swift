@@ -1,10 +1,3 @@
-//
-//  GroceriesApp.swift
-//  Groceries
-//
-//  Created by arifin on 27/07/24.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -12,7 +5,7 @@ import SwiftData
 struct GroceriesApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            GroceryItem.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
