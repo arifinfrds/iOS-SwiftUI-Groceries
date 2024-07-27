@@ -11,10 +11,14 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(groceries) { grocery in
-                    Text(grocery.name)
+                if groceries.isEmpty Z{
+                    emptyView
+                } else {
+                    ForEach(groceries) { grocery in
+                        Text(grocery.name)
+                    }
+                    .onDelete(perform: removeGrocery)
                 }
-                .onDelete(perform: removeGrocery)
             }
             .navigationTitle("Groceries")
             .toolbar {
@@ -39,6 +43,14 @@ struct ContentView: View {
                 Button("Cancel", role: .cancel, action: {})
             })
         }
+    }
+    
+    private var emptyView: some View {
+        ContentUnavailableView(
+            "Empty item",
+            systemImage: "cart",
+            description: Text("No item found. Tap + button to add items to your groceries list.")
+        )
     }
     
     private func addGrocery() {
