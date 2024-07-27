@@ -40,6 +40,7 @@ struct ContentView: View {
             .alert("Add Grocery", isPresented: $showAlert, actions: {
                 TextField("Grocery name", text: $newGroceryName)
                 Button("Add", action: addGrocery)
+                    .keyboardShortcut(.defaultAction)
                 Button("Cancel", role: .cancel, action: {})
             })
         }
