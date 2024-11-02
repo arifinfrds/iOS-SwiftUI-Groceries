@@ -6,11 +6,21 @@ struct OpenGroceriesIntent: AppIntent {
     
     static var description = IntentDescription("Opens the app to see groceries list.")
     
-    static var openAppWhenRun: Bool = true
+    static var openAppWhenRun: Bool = false
     
     @MainActor
-    func perform() async throws -> some IntentResult {
-        return .result()
+    func perform() async throws -> some IntentResult & ProvidesDialog {
+        let groceries = [
+            GroceryItem(name: "Apples"),
+            GroceryItem(name: "Bananas"),
+            GroceryItem(name: "Milk")
+        ]
+        
+        var groceryList = groceries
+            .map(\.name)
+            .joined(separator: ", ")
+        groceryList.removeLast()
+        
+        return .result(dialog: IntentDialog("Your groceries list: \n\(groceryList)"))
     }
 }
-
