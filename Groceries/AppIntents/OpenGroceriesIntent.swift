@@ -13,3 +13,4 @@ struct OpenGroceriesIntent: AppIntent {
         return .result()
     }
 }
+
