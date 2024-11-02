@@ -11,12 +11,8 @@ struct OpenGroceriesIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let groceryLoader = LocalGroceryLoader(modelContext: GroceriesApp.sharedModelContainer.mainContext)
-        let groceries = try await groceryLoader.loadGroceries()
-        
-        let groceryList = groceries
-            .map(\.name)
-            .joined(separator: ", ")
-        
-        return .result(dialog: IntentDialog("Your groceries list: \n\(groceryList)"))
+        let viewModel = OpenGroceriesIntentViewModel(groceryLoader: groceryLoader)
+        let performResult = try await viewModel.perform()
+        return .result(dialog: IntentDialog(stringLiteral: performResult))
     }
 }

@@ -21,6 +21,7 @@
 		1AC8EC6E2CD6537A00ADA919 /* LocalGroceryDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC6D2CD6537A00ADA919 /* LocalGroceryDeleter.swift */; };
 		1AC8EC702CD65BA900ADA919 /* LocalGroceryAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC6F2CD65BA900ADA919 /* LocalGroceryAdder.swift */; };
 		1AC8EC722CD65BEC00ADA919 /* GroceryAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC712CD65BEC00ADA919 /* GroceryAdder.swift */; };
+		1AC8EC742CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC732CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		1AC8EC6D2CD6537A00ADA919 /* LocalGroceryDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGroceryDeleter.swift; sourceTree = "<group>"; };
 		1AC8EC6F2CD65BA900ADA919 /* LocalGroceryAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGroceryAdder.swift; sourceTree = "<group>"; };
 		1AC8EC712CD65BEC00ADA919 /* GroceryAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryAdder.swift; sourceTree = "<group>"; };
+		1AC8EC732CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGroceriesIntentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9D3DE82C562EEF0063F010 /* OpenGroceriesIntent.swift */,
+				1AC8EC732CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift */,
 				1A9D3DEA2C563CFA0063F010 /* OpenGroceriesShortcut.swift */,
 			);
 			path = AppIntents;
@@ -204,6 +207,7 @@
 				1AC8EC722CD65BEC00ADA919 /* GroceryAdder.swift in Sources */,
 				1A9D3DEB2C563CFA0063F010 /* OpenGroceriesShortcut.swift in Sources */,
 				1AC8EC6C2CD6536700ADA919 /* GroceryDeleter.swift in Sources */,
+				1AC8EC742CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift in Sources */,
 				1A6E4B922C54E28A009DCB5B /* ContentView.swift in Sources */,
 				1AC8EC6E2CD6537A00ADA919 /* LocalGroceryDeleter.swift in Sources */,
 				1AC8EC6A2CD64FCE00ADA919 /* GroceriesViewModel.swift in Sources */,
