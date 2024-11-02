@@ -14,6 +14,13 @@
 		1A6E4B9A2C54E28E009DCB5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6E4B992C54E28E009DCB5B /* Preview Assets.xcassets */; };
 		1A9D3DE92C562EEF0063F010 /* OpenGroceriesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3DE82C562EEF0063F010 /* OpenGroceriesIntent.swift */; };
 		1A9D3DEB2C563CFA0063F010 /* OpenGroceriesShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3DEA2C563CFA0063F010 /* OpenGroceriesShortcut.swift */; };
+		1AC8EC642CD64F0800ADA919 /* GroceryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC632CD64F0800ADA919 /* GroceryLoader.swift */; };
+		1AC8EC672CD64F5100ADA919 /* LocalGroceryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC662CD64F5100ADA919 /* LocalGroceryLoader.swift */; };
+		1AC8EC6A2CD64FCE00ADA919 /* GroceriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC692CD64FCE00ADA919 /* GroceriesViewModel.swift */; };
+		1AC8EC6C2CD6536700ADA919 /* GroceryDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC6B2CD6536700ADA919 /* GroceryDeleter.swift */; };
+		1AC8EC6E2CD6537A00ADA919 /* LocalGroceryDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC6D2CD6537A00ADA919 /* LocalGroceryDeleter.swift */; };
+		1AC8EC702CD65BA900ADA919 /* LocalGroceryAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC6F2CD65BA900ADA919 /* LocalGroceryAdder.swift */; };
+		1AC8EC722CD65BEC00ADA919 /* GroceryAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC712CD65BEC00ADA919 /* GroceryAdder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,13 @@
 		1A6E4B992C54E28E009DCB5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A9D3DE82C562EEF0063F010 /* OpenGroceriesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGroceriesIntent.swift; sourceTree = "<group>"; };
 		1A9D3DEA2C563CFA0063F010 /* OpenGroceriesShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGroceriesShortcut.swift; sourceTree = "<group>"; };
+		1AC8EC632CD64F0800ADA919 /* GroceryLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryLoader.swift; sourceTree = "<group>"; };
+		1AC8EC662CD64F5100ADA919 /* LocalGroceryLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGroceryLoader.swift; sourceTree = "<group>"; };
+		1AC8EC692CD64FCE00ADA919 /* GroceriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceriesViewModel.swift; sourceTree = "<group>"; };
+		1AC8EC6B2CD6536700ADA919 /* GroceryDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryDeleter.swift; sourceTree = "<group>"; };
+		1AC8EC6D2CD6537A00ADA919 /* LocalGroceryDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGroceryDeleter.swift; sourceTree = "<group>"; };
+		1AC8EC6F2CD65BA900ADA919 /* LocalGroceryAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGroceryAdder.swift; sourceTree = "<group>"; };
+		1AC8EC712CD65BEC00ADA919 /* GroceryAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryAdder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +72,9 @@
 		1A6E4B8E2C54E28A009DCB5B /* Groceries */ = {
 			isa = PBXGroup;
 			children = (
+				1AC8EC652CD64F3C00ADA919 /* Store */,
+				1AC8EC622CD64EC500ADA919 /* Feature */,
+				1AC8EC682CD64FB000ADA919 /* Presentation */,
 				1A9D3DE72C562ED40063F010 /* AppIntents */,
 				1A6E4B8F2C54E28A009DCB5B /* GroceriesApp.swift */,
 				1A6E4B912C54E28A009DCB5B /* ContentView.swift */,
@@ -84,6 +101,34 @@
 				1A9D3DEA2C563CFA0063F010 /* OpenGroceriesShortcut.swift */,
 			);
 			path = AppIntents;
+			sourceTree = "<group>";
+		};
+		1AC8EC622CD64EC500ADA919 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8EC632CD64F0800ADA919 /* GroceryLoader.swift */,
+				1AC8EC6B2CD6536700ADA919 /* GroceryDeleter.swift */,
+				1AC8EC712CD65BEC00ADA919 /* GroceryAdder.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		1AC8EC652CD64F3C00ADA919 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8EC662CD64F5100ADA919 /* LocalGroceryLoader.swift */,
+				1AC8EC6D2CD6537A00ADA919 /* LocalGroceryDeleter.swift */,
+				1AC8EC6F2CD65BA900ADA919 /* LocalGroceryAdder.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		1AC8EC682CD64FB000ADA919 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8EC692CD64FCE00ADA919 /* GroceriesViewModel.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,11 +201,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AC8EC722CD65BEC00ADA919 /* GroceryAdder.swift in Sources */,
 				1A9D3DEB2C563CFA0063F010 /* OpenGroceriesShortcut.swift in Sources */,
+				1AC8EC6C2CD6536700ADA919 /* GroceryDeleter.swift in Sources */,
 				1A6E4B922C54E28A009DCB5B /* ContentView.swift in Sources */,
+				1AC8EC6E2CD6537A00ADA919 /* LocalGroceryDeleter.swift in Sources */,
+				1AC8EC6A2CD64FCE00ADA919 /* GroceriesViewModel.swift in Sources */,
 				1A6E4B942C54E28A009DCB5B /* GroceryItem.swift in Sources */,
+				1AC8EC672CD64F5100ADA919 /* LocalGroceryLoader.swift in Sources */,
 				1A6E4B902C54E28A009DCB5B /* GroceriesApp.swift in Sources */,
+				1AC8EC642CD64F0800ADA919 /* GroceryLoader.swift in Sources */,
 				1A9D3DE92C562EEF0063F010 /* OpenGroceriesIntent.swift in Sources */,
+				1AC8EC702CD65BA900ADA919 /* LocalGroceryAdder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

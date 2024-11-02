@@ -18,8 +18,19 @@ struct GroceriesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: makeGroceriesViewModel())
         }
-        .modelContainer(sharedModelContainer)
+    }
+    
+    private func makeGroceriesViewModel() -> GroceriesViewModel {
+        let modelContext = sharedModelContainer.mainContext
+        let groceryLoader = LocalGroceryLoader(modelContext: modelContext)
+        let groceryDeleter = LocalGroceryDeleter(modelContext: modelContext)
+        let groceryAdder = LocalGroceryAdder(modelContext: modelContext)
+        return GroceriesViewModel(
+            groceryLoader: groceryLoader,
+            groceryDeleter: groceryDeleter,
+            groceryAdder: groceryAdder
+        )
     }
 }
