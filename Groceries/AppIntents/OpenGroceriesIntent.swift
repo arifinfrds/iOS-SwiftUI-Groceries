@@ -16,10 +16,9 @@ struct OpenGroceriesIntent: AppIntent {
             GroceryItem(name: "Milk")
         ]
         
-        var groceryList = groceries
+        let groceryList = groceries
             .map(\.name)
             .joined(separator: ", ")
-        groceryList.removeLast()
         
         return .result(dialog: IntentDialog("Your groceries list: \n\(groceryList)"))
     }
