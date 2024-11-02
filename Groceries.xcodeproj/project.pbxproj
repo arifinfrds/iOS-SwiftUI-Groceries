@@ -75,12 +75,10 @@
 			isa = PBXGroup;
 			children = (
 				1AC8EC652CD64F3C00ADA919 /* Store */,
-				1AC8EC622CD64EC500ADA919 /* Feature */,
-				1AC8EC682CD64FB000ADA919 /* Presentation */,
+				1AC8EC622CD64EC500ADA919 /* Domain */,
+				1AC8EC682CD64FB000ADA919 /* View */,
 				1A9D3DE72C562ED40063F010 /* AppIntents */,
 				1A6E4B8F2C54E28A009DCB5B /* GroceriesApp.swift */,
-				1A6E4B912C54E28A009DCB5B /* ContentView.swift */,
-				1A6E4B932C54E28A009DCB5B /* GroceryItem.swift */,
 				1A6E4B952C54E28E009DCB5B /* Assets.xcassets */,
 				1A6E4B972C54E28E009DCB5B /* Groceries.entitlements */,
 				1A6E4B982C54E28E009DCB5B /* Preview Content */,
@@ -106,14 +104,15 @@
 			path = AppIntents;
 			sourceTree = "<group>";
 		};
-		1AC8EC622CD64EC500ADA919 /* Feature */ = {
+		1AC8EC622CD64EC500ADA919 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				1A6E4B932C54E28A009DCB5B /* GroceryItem.swift */,
 				1AC8EC632CD64F0800ADA919 /* GroceryLoader.swift */,
 				1AC8EC6B2CD6536700ADA919 /* GroceryDeleter.swift */,
 				1AC8EC712CD65BEC00ADA919 /* GroceryAdder.swift */,
 			);
-			path = Feature;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		1AC8EC652CD64F3C00ADA919 /* Store */ = {
@@ -126,12 +125,13 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
-		1AC8EC682CD64FB000ADA919 /* Presentation */ = {
+		1AC8EC682CD64FB000ADA919 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1AC8EC692CD64FCE00ADA919 /* GroceriesViewModel.swift */,
+				1A6E4B912C54E28A009DCB5B /* ContentView.swift */,
 			);
-			path = Presentation;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
