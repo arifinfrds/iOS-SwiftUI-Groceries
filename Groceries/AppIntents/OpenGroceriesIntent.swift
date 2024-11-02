@@ -10,11 +10,8 @@ struct OpenGroceriesIntent: AppIntent {
     
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog {
-        let groceries = [
-            GroceryItem(name: "Apples"),
-            GroceryItem(name: "Bananas"),
-            GroceryItem(name: "Milk")
-        ]
+        let groceryLoader = LocalGroceryLoader(modelContext: GroceriesApp.sharedModelContainer.mainContext)
+        let groceries = try await groceryLoader.loadGroceries()
         
         let groceryList = groceries
             .map(\.name)

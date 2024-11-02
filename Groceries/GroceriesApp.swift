@@ -3,7 +3,7 @@ import SwiftData
 
 @main
 struct GroceriesApp: App {
-    var sharedModelContainer: ModelContainer = {
+    static var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             GroceryItem.self,
         ])
@@ -23,7 +23,7 @@ struct GroceriesApp: App {
     }
     
     private func makeGroceriesViewModel() -> GroceriesViewModel {
-        let modelContext = sharedModelContainer.mainContext
+        let modelContext = GroceriesApp.sharedModelContainer.mainContext
         let groceryLoader = LocalGroceryLoader(modelContext: modelContext)
         let groceryDeleter = LocalGroceryDeleter(modelContext: modelContext)
         let groceryAdder = LocalGroceryAdder(modelContext: modelContext)
