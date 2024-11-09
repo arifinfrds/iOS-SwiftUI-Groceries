@@ -1,10 +1,10 @@
 import AppIntents
 
-struct OpenGroceriesIntent: AppIntent {
+struct ShowGroceriesIntent: AppIntent {
     
-    static var title: LocalizedStringResource = "Open Groceries list"
+    static var title: LocalizedStringResource = "Show Groceries list"
     
-    static var description = IntentDescription("Opens the app to see groceries list.")
+    static var description = IntentDescription("Show current available groceries list item.")
     
     static var openAppWhenRun: Bool = false
     

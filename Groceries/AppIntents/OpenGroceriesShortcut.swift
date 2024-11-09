@@ -7,7 +7,7 @@ struct OpenGroceriesShortcut: AppShortcutsProvider {
     @AppShortcutsBuilder
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
-            intent: OpenGroceriesIntent(),
+            intent: ShowGroceriesIntent(),
             phrases: [
                 "Open \(.applicationName)",
                 "See \(.applicationName)",
