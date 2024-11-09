@@ -1,21 +1,21 @@
+import Combine
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
     
-    @Environment(\.modelContext) private var modelContext
-    @Query private var groceries: [GroceryItem]
     @State private var newGroceryName: String = ""
     @State private var showAlert = false
     @State private var showDeleteAllAlert = false
     
+    @ObservedObject var viewModel: GroceriesViewModel
+    
     var body: some View {
         NavigationView {
             List {
-                if groceries.isEmpty {
+                if viewModel.groceries.isEmpty {
                     emptyView
                 } else {
-                    ForEach(groceries) { grocery in
+                    ForEach(viewModel.groceries) { grocery in
                         Text(grocery.name)
                     }
                     .onDelete(perform: deleteGrocery)
@@ -50,6 +50,9 @@ struct ContentView: View {
                     .keyboardShortcut(.defaultAction)
                 Button("Cancel", role: .cancel, action: {})
             })
+            .task {
+                await viewModel.loadGroceries()
+            }
         }
     }
     
@@ -63,25 +66,28 @@ struct ContentView: View {
     
     private func addGrocery() {
         guard !newGroceryName.isEmpty else { return }
-        let newItem = GroceryItem(name: newGroceryName)
-        modelContext.insert(newItem)
-        newGroceryName = ""
+        Task { @MainActor in
+            await viewModel.addGrocery(name: newGroceryName)
+            newGroceryName = ""
+        }
     }
     
     private func deleteGrocery(at offsets: IndexSet) {
         offsets.forEach { index in
-            modelContext.delete(groceries[index])
+            Task {
+                await viewModel.delete(grocery: viewModel.groceries[index])
+            }
         }
     }
     
     private func deleteAllGroceries() {
-        groceries.forEach { grocery in
-            modelContext.delete(grocery)
+        Task {
+            await viewModel.deleteGroceries()
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: GroceryItem.self, inMemory: true)
-}
+//#Preview {
+//    ContentView()
+//        .modelContainer(for: GroceryItem.self, inMemory: true)
+//}
