@@ -10,9 +10,14 @@ struct OpenGroceriesIntent: AppIntent {
     
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog {
+        let performResult = try await groceriesResult()
+        return .result(dialog: IntentDialog(stringLiteral: performResult))
+    }
+    
+    @MainActor
+    private func groceriesResult() async throws -> String {
         let groceryLoader = LocalGroceryLoader(modelContext: GroceriesApp.sharedModelContainer.mainContext)
         let viewModel = OpenGroceriesIntentViewModel(groceryLoader: groceryLoader)
-        let performResult = try await viewModel.perform()
-        return .result(dialog: IntentDialog(stringLiteral: performResult))
+        return try await viewModel.perform()
     }
 }
