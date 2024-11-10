@@ -10,7 +10,7 @@ struct OpenGroceriesIntentViewModel {
         let groceries = try await groceryLoader.loadGroceries()
         
         return groceries.isEmpty
-        ? "You don't have any groceries"
+        ? "You don't have any groceries item"
         : nonEmptyItemsMessage(groceries: groceries)
     }
     
@@ -19,6 +19,6 @@ struct OpenGroceriesIntentViewModel {
             .map(\.name)
             .joined(separator: ", ")
         
-        return "Your groceries list: \n\(groceryList)"
+        return "Here is your groceries list: \n\(groceryList)"
     }
 }
