@@ -23,14 +23,14 @@ struct ContentView: View {
             }
             .navigationTitle("Groceries")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .automatic) {
                     Button(action: {
                         showAlert = true
                     }) {
                         Image(systemName: "plus")
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .automatic) {
                     Button(action: {
                         showDeleteAllAlert = true
                     }) {
