@@ -22,3 +22,4 @@ struct OpenGroceriesIntentViewModel {
         return "Here is your groceries list: \n\(groceryList)"
     }
 }
+
