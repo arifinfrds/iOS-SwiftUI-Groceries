@@ -73,5 +73,17 @@ struct GroceriesAppShortcutProvider: AppShortcutsProvider {
             shortTitle: LocalizedStringResource(stringLiteral: "Remove all groceries"),
             systemImageName: "cart.fill.badge.minus"
         )
+        
+        AppShortcut(
+            intent: AddItemToGroceriesIntent(),
+            phrases: [
+                "Add an item to \(.applicationName)",
+                "Add item to \(.applicationName)",
+                "Add an item to \(.applicationName)",
+                "Add item to \(.applicationName)",
+            ],
+            shortTitle: LocalizedStringResource(stringLiteral: "Add an item to groceries"),
+            systemImageName: "cart.badge.plus"
+        )
     }
 }

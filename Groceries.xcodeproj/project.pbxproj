@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0624F32CE1AEA300B2E41F /* AddItemToGroceriesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0624F22CE1AEA300B2E41F /* AddItemToGroceriesIntent.swift */; };
 		1A4964E12CDF1E5800D9DCD6 /* RemoveAllGroceriesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4964E02CDF1E5800D9DCD6 /* RemoveAllGroceriesIntent.swift */; };
 		1A6E4B902C54E28A009DCB5B /* GroceriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E4B8F2C54E28A009DCB5B /* GroceriesApp.swift */; };
 		1A6E4B922C54E28A009DCB5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E4B912C54E28A009DCB5B /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A0624F22CE1AEA300B2E41F /* AddItemToGroceriesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToGroceriesIntent.swift; sourceTree = "<group>"; };
 		1A4964E02CDF1E5800D9DCD6 /* RemoveAllGroceriesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAllGroceriesIntent.swift; sourceTree = "<group>"; };
 		1A6E4B8C2C54E28A009DCB5B /* Groceries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Groceries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6E4B8F2C54E28A009DCB5B /* GroceriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceriesApp.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0624F12CE1AE6900B2E41F /* AddItemToGroceries */ = {
+			isa = PBXGroup;
+			children = (
+				1A0624F22CE1AEA300B2E41F /* AddItemToGroceriesIntent.swift */,
+			);
+			path = AddItemToGroceries;
+			sourceTree = "<group>";
+		};
 		1A4964DF2CDF1E3000D9DCD6 /* RemoveAllGroceries */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		1A9D3DE72C562ED40063F010 /* AppIntents */ = {
 			isa = PBXGroup;
 			children = (
+				1A0624F12CE1AE6900B2E41F /* AddItemToGroceries */,
 				1A4964DF2CDF1E3000D9DCD6 /* RemoveAllGroceries */,
 				1A9D3DE82C562EEF0063F010 /* ShowGroceriesIntent.swift */,
 				1AC8EC732CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift */,
@@ -223,6 +234,7 @@
 				1A6E4B922C54E28A009DCB5B /* ContentView.swift in Sources */,
 				1AC8EC6E2CD6537A00ADA919 /* LocalGroceryDeleter.swift in Sources */,
 				1AC8EC6A2CD64FCE00ADA919 /* GroceriesViewModel.swift in Sources */,
+				1A0624F32CE1AEA300B2E41F /* AddItemToGroceriesIntent.swift in Sources */,
 				1A6E4B942C54E28A009DCB5B /* GroceryItem.swift in Sources */,
 				1AC8EC672CD64F5100ADA919 /* LocalGroceryLoader.swift in Sources */,
 				1A6E4B902C54E28A009DCB5B /* GroceriesApp.swift in Sources */,
