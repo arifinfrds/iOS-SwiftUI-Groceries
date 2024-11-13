@@ -15,11 +15,7 @@ final class GroceriesViewModelTests: XCTestCase {
     @MainActor
     func testInit_doesNotPerformAnything() {
         let collaborator = GroceryStub()
-        _ = GroceriesViewModel(
-            groceryLoader: collaborator,
-            groceryDeleter: collaborator,
-            groceryAdder: collaborator
-        )
+        let _ = makeSUT(collaborator: collaborator)
         
         XCTAssertTrue(collaborator.invocations.isEmpty)
     }
@@ -29,11 +25,7 @@ final class GroceriesViewModelTests: XCTestCase {
     @MainActor
     func testLoadGroceries_performLoaderGroceries() async {
         let collaborator = GroceryStub()
-        let sut = GroceriesViewModel(
-            groceryLoader: collaborator,
-            groceryDeleter: collaborator,
-            groceryAdder: collaborator
-        )
+        let sut = makeSUT(collaborator: collaborator)
         
         await sut.loadGroceries()
         
@@ -43,11 +35,7 @@ final class GroceriesViewModelTests: XCTestCase {
     @MainActor
     func testLoadGroceriesTwice_performLoaderGroceriesTwice() async {
         let collaborator = GroceryStub()
-        let sut = GroceriesViewModel(
-            groceryLoader: collaborator,
-            groceryDeleter: collaborator,
-            groceryAdder: collaborator
-        )
+        let sut = makeSUT(collaborator: collaborator)
         
         await sut.loadGroceries()
         await sut.loadGroceries()
@@ -59,11 +47,7 @@ final class GroceriesViewModelTests: XCTestCase {
     func testLoadGroceries_whenLoadSuccessfully_deliverItems() async {
         let expectedGroceries = [ GroceryItem(name: "Apple") ]
         let collaborator = GroceryStub(loadGroceriesResult: .success(expectedGroceries))
-        let sut = GroceriesViewModel(
-            groceryLoader: collaborator,
-            groceryDeleter: collaborator,
-            groceryAdder: collaborator
-        )
+        let sut = makeSUT(collaborator: collaborator)
         var receivedGroceries = [GroceryItem]()
         let exp = expectation(description: "Wait for subscription")
         let cancellable = sut.$groceries
@@ -79,6 +63,23 @@ final class GroceriesViewModelTests: XCTestCase {
         
         XCTAssertEqual(receivedGroceries, expectedGroceries)
         cancellable.cancel()
+    }
+    
+    // MARK: - Helpers
+    
+    @MainActor
+    private func makeSUT(
+        collaborator: GroceryStub,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> GroceriesViewModel {
+        let sut = GroceriesViewModel(
+            groceryLoader: collaborator,
+            groceryDeleter: collaborator,
+            groceryAdder: collaborator
+        )
+        trackMemoryLeaks(sut, file: file, line: line)
+        return sut
     }
 }
 
