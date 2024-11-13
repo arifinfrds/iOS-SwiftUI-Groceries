@@ -144,12 +144,26 @@ final class GroceriesViewModelTests: XCTestCase {
     @MainActor
     func testAddGrocery_performGroceryAdditionInOrder() async {
         let groceryName = "a grocery"
-        let collaborator = GroceryStub(loadGroceriesResult: .success([]))
+        let collaborator = GroceryStub(
+            addGroceryResult: .success(())
+        )
         let sut = makeSUT(collaborator: collaborator)
         
         await sut.addGrocery(name: groceryName)
         
         XCTAssertEqual(collaborator.invocations, [ .add, .loaderGroceries ])
+    }
+    
+    @MainActor
+    func testAddGrocery_whenFailedToAdd_doesNotPerformReload() async {
+        let anyError = NSError(domain: "any", code: -1)
+        let groceryName = "a grocery"
+        let collaborator = GroceryStub(addGroceryResult: .failure(anyError))
+        let sut = makeSUT(collaborator: collaborator)
+        
+        await sut.addGrocery(name: groceryName)
+        
+        XCTAssertEqual(collaborator.invocations, [ .add ])
     }
     
     // MARK: - Helpers
@@ -186,15 +200,18 @@ private final class GroceryStub: GroceryLoader, GroceryDeleter, GroceryAdder {
     private let loadGroceriesResult: Result<[GroceryItem], any Error>
     private let deleteGroceriesResult: Result<Void, any Error>
     private let deleteGroceryResult: Result<Void, any Error>
+    private let addGroceryResult: Result<Void, any Error>
     
     init(
         loadGroceriesResult: Result<[GroceryItem], any Error> = .failure(NSError()),
         deleteGroceriesResult: Result<Void, any Error> = .failure(NSError()),
-        deleteGroceryResult: Result<Void, any Error> = .failure(NSError())
+        deleteGroceryResult: Result<Void, any Error> = .failure(NSError()),
+        addGroceryResult: Result<Void, any Error> = .failure(NSError())
     ) {
         self.loadGroceriesResult = loadGroceriesResult
         self.deleteGroceriesResult = deleteGroceriesResult
         self.deleteGroceryResult = deleteGroceryResult
+        self.addGroceryResult = addGroceryResult
     }
     
     func loadGroceries() async throws -> [GroceryItem] {
@@ -224,5 +241,11 @@ private final class GroceryStub: GroceryLoader, GroceryDeleter, GroceryAdder {
     
     func add(grocery: GroceryItem) async throws {
         invocations.append(.add)
+        switch addGroceryResult {
+        case .success:
+            return
+        case .failure(let error):
+            throw error
+        }
     }
 }
