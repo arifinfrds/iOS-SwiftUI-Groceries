@@ -38,10 +38,14 @@ final class GroceryStub: GroceryLoader, GroceryDeleter, GroceryAdder {
         self.addGroceryResult = addGroceryResult
     }
     
+    // MARK: - GroceryLoader
+    
     func loadGroceries() async throws -> [GroceryItem] {
         invocations.append(.loaderGroceries)
         return try loadGroceriesResult.get()
     }
+    
+    // MARK: - GroceryDeleter
     
     func deleteGroceries() async throws {
         invocations.append(.deleteGroceries)
@@ -62,6 +66,8 @@ final class GroceryStub: GroceryLoader, GroceryDeleter, GroceryAdder {
             throw error
         }
     }
+    
+    // MARK: - GroceryAdder
     
     func add(grocery: GroceryItem) async throws {
         invocations.append(.add)
