@@ -99,6 +99,20 @@ final class GroceriesViewModelTests: XCTestCase {
         XCTAssertEqual(collaborator.invocations, [ .deleteGroceries, .loaderGroceries ])
     }
     
+    // MARK: - deleteGrocery
+    
+    @MainActor
+    func testDeleteGrocery_performGroceryDeletionInOrder() async {
+        let groceryItem = GroceryItem(name: "a grocery")
+        let anyGroceryToDelete = groceryItem
+        let collaborator = GroceryStub(loadGroceriesResult: .success([groceryItem]))
+        let sut = makeSUT(collaborator: collaborator)
+        
+        await sut.delete(grocery: anyGroceryToDelete)
+        
+        XCTAssertEqual(collaborator.invocations, [ .delete, .loaderGroceries ])
+    }
+    
     // MARK: - Helpers
     
     @MainActor
