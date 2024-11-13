@@ -55,4 +55,3 @@ final class GroceriesViewModel: ObservableObject {
         await loadGroceries()
     }
 }
-
