@@ -35,6 +35,21 @@ final class GroceriesViewModelTests: XCTestCase {
         
         XCTAssertEqual(collaborator.invocations, [ .loaderGroceries ])
     }
+    
+    @MainActor
+    func testLoadGroceriesTwice_performLoaderGroceriesTwice() async {
+        let collaborator = GroceryStub()
+        let sut = GroceriesViewModel(
+            groceryLoader: collaborator,
+            groceryDeleter: collaborator,
+            groceryAdder: collaborator
+        )
+        
+        await sut.loadGroceries()
+        await sut.loadGroceries()
+        
+        XCTAssertEqual(collaborator.invocations, [ .loaderGroceries, .loaderGroceries ])
+    }
 }
 
 // MARK: - Helpers
