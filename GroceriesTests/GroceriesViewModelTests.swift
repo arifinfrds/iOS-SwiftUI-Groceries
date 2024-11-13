@@ -10,6 +10,8 @@ import XCTest
 
 final class GroceriesViewModelTests: XCTestCase {
     
+    // MARK: - init
+    
     @MainActor
     func testInit_doesNotPerformAnything() {
         let collaborator = GroceryStub()
@@ -21,6 +23,8 @@ final class GroceriesViewModelTests: XCTestCase {
         
         XCTAssertTrue(collaborator.invocations.isEmpty)
     }
+    
+    // MARK: - loadGroceries
     
     @MainActor
     func testLoadGroceries_performLoaderGroceries() async {
