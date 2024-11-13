@@ -90,13 +90,24 @@ final class GroceriesViewModelTests: XCTestCase {
     // MARK: - deleteGroceries
     
     @MainActor
-    func testDeleteGroceries_performGroceriesDeletionInOrder() async {
-        let collaborator = GroceryStub()
+    func testDeleteGroceries_whenDeleteSuccessfully_performGroceriesDeletionInOrder() async {
+        let collaborator = GroceryStub(deleteGroceriesResult: .success(()))
         let sut = makeSUT(collaborator: collaborator)
         
         await sut.deleteGroceries()
         
         XCTAssertEqual(collaborator.invocations, [ .deleteGroceries, .loaderGroceries ])
+    }
+    
+    @MainActor
+    func testDeleteGroceries_whenFailedToDelete_doesNotAttemptReload() async {
+        let anyError = NSError(domain: "any", code: -1)
+        let collaborator = GroceryStub(deleteGroceriesResult: .failure(anyError))
+        let sut = makeSUT(collaborator: collaborator)
+        
+        await sut.deleteGroceries()
+        
+        XCTAssertEqual(collaborator.invocations, [ .deleteGroceries ])
     }
     
     // MARK: - deleteGrocery
@@ -158,11 +169,14 @@ private final class GroceryStub: GroceryLoader, GroceryDeleter, GroceryAdder {
     private(set) var invocations = [Invocation]()
     
     private let loadGroceriesResult: Result<[GroceryItem], any Error>
+    private let deleteGroceriesResult: Result<Void, any Error>
     
     init(
-        loadGroceriesResult: Result<[GroceryItem], any Error> = .failure(NSError())
+        loadGroceriesResult: Result<[GroceryItem], any Error> = .failure(NSError()),
+        deleteGroceriesResult: Result<Void, any Error> = .failure(NSError())
     ) {
         self.loadGroceriesResult = loadGroceriesResult
+        self.deleteGroceriesResult = deleteGroceriesResult
     }
     
     func loadGroceries() async throws -> [GroceryItem] {
@@ -172,6 +186,12 @@ private final class GroceryStub: GroceryLoader, GroceryDeleter, GroceryAdder {
     
     func deleteGroceries() async throws {
         invocations.append(.deleteGroceries)
+        switch deleteGroceriesResult {
+        case .success:
+            break
+        case .failure(let error):
+            throw error
+        }
     }
     
     func delete(grocery: GroceryItem) async throws {
