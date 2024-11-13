@@ -54,6 +54,32 @@ final class GroceriesViewModelTests: XCTestCase {
         
         XCTAssertEqual(collaborator.invocations, [ .loaderGroceries, .loaderGroceries ])
     }
+    
+    @MainActor
+    func testLoadGroceries_whenLoadSuccessfully_deliverItems() async {
+        let expectedGroceries = [ GroceryItem(name: "Apple") ]
+        let collaborator = GroceryStub(loadGroceriesResult: .success(expectedGroceries))
+        let sut = GroceriesViewModel(
+            groceryLoader: collaborator,
+            groceryDeleter: collaborator,
+            groceryAdder: collaborator
+        )
+        var receivedGroceries = [GroceryItem]()
+        let exp = expectation(description: "Wait for subscription")
+        let cancellable = sut.$groceries
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink {
+                receivedGroceries = $0
+                exp.fulfill()
+            }
+        
+        await sut.loadGroceries()
+        await fulfillment(of: [exp], timeout: 0.1)
+        
+        XCTAssertEqual(receivedGroceries, expectedGroceries)
+        cancellable.cancel()
+    }
 }
 
 // MARK: - Helpers
@@ -69,9 +95,17 @@ private final class GroceryStub: GroceryLoader, GroceryDeleter, GroceryAdder {
     
     private(set) var invocations = [Invocation]()
     
+    private let loadGroceriesResult: Result<[GroceryItem], any Error>
+    
+    init(
+        loadGroceriesResult: Result<[GroceryItem], any Error> = .failure(NSError())
+    ) {
+        self.loadGroceriesResult = loadGroceriesResult
+    }
+    
     func loadGroceries() async throws -> [GroceryItem] {
         invocations.append(.loaderGroceries)
-        return []
+        return try loadGroceriesResult.get()
     }
     
     func deleteGroceries() async throws {
