@@ -21,6 +21,20 @@ final class GroceriesViewModelTests: XCTestCase {
         
         XCTAssertTrue(collaborator.invocations.isEmpty)
     }
+    
+    @MainActor
+    func testLoadGroceries_performLoaderGroceries() async {
+        let collaborator = GroceryStub()
+        let sut = GroceriesViewModel(
+            groceryLoader: collaborator,
+            groceryDeleter: collaborator,
+            groceryAdder: collaborator
+        )
+        
+        await sut.loadGroceries()
+        
+        XCTAssertEqual(collaborator.invocations, [ .loaderGroceries ])
+    }
 }
 
 // MARK: - Helpers
