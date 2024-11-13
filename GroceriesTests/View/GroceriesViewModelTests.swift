@@ -87,6 +87,18 @@ final class GroceriesViewModelTests: XCTestCase {
         cancellable.cancel()
     }
     
+    // MARK: - deleteGroceries
+    
+    @MainActor
+    func testDeleteGroceries_performGroceriesDeletionInOrder() async {
+        let collaborator = GroceryStub()
+        let sut = makeSUT(collaborator: collaborator)
+        
+        await sut.deleteGroceries()
+        
+        XCTAssertEqual(collaborator.invocations, [ .deleteGroceries, .loaderGroceries ])
+    }
+    
     // MARK: - Helpers
     
     @MainActor
