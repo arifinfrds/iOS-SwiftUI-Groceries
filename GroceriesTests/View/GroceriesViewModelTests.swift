@@ -44,6 +44,28 @@ final class GroceriesViewModelTests: XCTestCase {
     }
     
     @MainActor
+    func testLoadGroceries_whenLoadSuccessfully_deliversEmptyItems() async {
+        let expectedGroceries = [GroceryItem]()
+        let collaborator = GroceryStub(loadGroceriesResult: .success(expectedGroceries))
+        let sut = makeSUT(collaborator: collaborator)
+        var receivedGroceries = [GroceryItem]()
+        let exp = expectation(description: "Wait for subscription")
+        let cancellable = sut.$groceries
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink {
+                receivedGroceries = $0
+                exp.fulfill()
+            }
+        
+        await sut.loadGroceries()
+        await fulfillment(of: [exp], timeout: 0.1)
+        
+        XCTAssertEqual(receivedGroceries, expectedGroceries)
+        cancellable.cancel()
+    }
+    
+    @MainActor
     func testLoadGroceries_whenLoadSuccessfully_deliverItems() async {
         let expectedGroceries = [ GroceryItem(name: "Apple") ]
         let collaborator = GroceryStub(loadGroceriesResult: .success(expectedGroceries))
