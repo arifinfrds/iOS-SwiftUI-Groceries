@@ -183,5 +183,3 @@ final class GroceriesViewModelTests: XCTestCase {
         return sut
     }
 }
-
-
