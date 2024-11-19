@@ -7,6 +7,7 @@
 
 @testable import Groceries
 import XCTest
+import Domain
 
 final class GroceriesViewModelTests: XCTestCase {
     
