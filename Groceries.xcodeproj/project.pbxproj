@@ -19,6 +19,8 @@
 		1AA2C3482CEC29E90095B65F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA2C3472CEC29E90095B65F /* WidgetKit.framework */; };
 		1AA2C34A2CEC29E90095B65F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA2C3492CEC29E90095B65F /* SwiftUI.framework */; };
 		1AA2C3562CEC29EA0095B65F /* GroceriesWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1AA2C3452CEC29E90095B65F /* GroceriesWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1AA2C3632CEC2FA70095B65F /* GroceryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC632CD64F0800ADA919 /* GroceryLoader.swift */; };
+		1AA2C3642CEC2FC60095B65F /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E4B932C54E28A009DCB5B /* GroceryItem.swift */; };
 		1AC8EC642CD64F0800ADA919 /* GroceryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC632CD64F0800ADA919 /* GroceryLoader.swift */; };
 		1AC8EC672CD64F5100ADA919 /* LocalGroceryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC662CD64F5100ADA919 /* LocalGroceryLoader.swift */; };
 		1AC8EC6A2CD64FCE00ADA919 /* GroceriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8EC692CD64FCE00ADA919 /* GroceriesViewModel.swift */; };
@@ -409,6 +411,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA2C3632CEC2FA70095B65F /* GroceryLoader.swift in Sources */,
+				1AA2C3642CEC2FC60095B65F /* GroceryItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
