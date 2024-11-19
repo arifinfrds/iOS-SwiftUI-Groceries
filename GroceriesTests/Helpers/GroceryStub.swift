@@ -7,6 +7,7 @@
 
 @testable import Groceries
 import Foundation
+import Domain
 
 // MARK: - Helpers
 

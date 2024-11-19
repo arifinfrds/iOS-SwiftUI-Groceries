@@ -6,6 +6,8 @@
 //
 
 import AppIntents
+import Domain
+import Store
 
 struct AddItemToGroceriesIntent: AppIntent {
     

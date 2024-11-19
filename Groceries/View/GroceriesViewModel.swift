@@ -1,4 +1,5 @@
 import Combine
+import Domain
 
 @MainActor
 final class GroceriesViewModel: ObservableObject {
