@@ -9,7 +9,7 @@ import WidgetKit
 
 struct GroceriesTimelineProvider: TimelineProvider {
     
-    private let placeholderEntry = GroceriesTimelineEntry(date: .now, grocery: "")
+    private let placeholderEntry = GroceriesTimelineEntry(date: .now, grocery: "Item")
     
     private let loader: any GroceryLoader
     
