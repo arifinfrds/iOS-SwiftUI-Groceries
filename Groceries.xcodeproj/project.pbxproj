@@ -138,13 +138,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1A93AFD62CEC812E00B800B8 /* ShowGroceries */ = {
+			isa = PBXGroup;
+			children = (
+				1A9D3DE82C562EEF0063F010 /* ShowGroceriesIntent.swift */,
+				1AC8EC732CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift */,
+			);
+			path = ShowGroceries;
+			sourceTree = "<group>";
+		};
 		1A9D3DE72C562ED40063F010 /* AppIntents */ = {
 			isa = PBXGroup;
 			children = (
 				1A0624F12CE1AE6900B2E41F /* AddItemToGroceries */,
 				1A4964DF2CDF1E3000D9DCD6 /* RemoveAllGroceries */,
-				1A9D3DE82C562EEF0063F010 /* ShowGroceriesIntent.swift */,
-				1AC8EC732CD6658F00ADA919 /* OpenGroceriesIntentViewModel.swift */,
+				1A93AFD62CEC812E00B800B8 /* ShowGroceries */,
 				1A9D3DEA2C563CFA0063F010 /* GroceriesAppShortcutProvider.swift */,
 			);
 			path = AppIntents;
