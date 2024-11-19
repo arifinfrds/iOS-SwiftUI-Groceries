@@ -3,18 +3,10 @@ import SwiftData
 
 @main
 struct GroceriesApp: App {
-    static var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            GroceryItem.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+    
+    static var sharedModelContainer: ModelContainer {
+        DataManager.sharedModelContainer
+    }
 
     var body: some Scene {
         WindowGroup {
