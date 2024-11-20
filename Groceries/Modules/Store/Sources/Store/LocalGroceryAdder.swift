@@ -1,14 +1,15 @@
 import SwiftData
+import Domain
 
-final class LocalGroceryAdder: GroceryAdder {
+public final class LocalGroceryAdder: GroceryAdder {
     
     private let modelContext: ModelContext
     
-    init(modelContext: ModelContext) {
+    public init(modelContext: ModelContext) {
         self.modelContext = modelContext
     }
     
-    func add(grocery: GroceryItem) async throws {
+    public func add(grocery: GroceryItem) async throws {
         modelContext.insert(grocery)
         try modelContext.save()
     }

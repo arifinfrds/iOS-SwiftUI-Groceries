@@ -1,14 +1,15 @@
 import SwiftData
+import Domain
 
-final class LocalGroceryLoader: GroceryLoader {
+public final class LocalGroceryLoader: GroceryLoader {
     
     private let modelContext: ModelContext
     
-    init(modelContext: ModelContext) {
+    public init(modelContext: ModelContext) {
         self.modelContext = modelContext
     }
     
-    func loadGroceries() async throws -> [GroceryItem] {
+    public func loadGroceries() async throws -> [GroceryItem] {
         let descriptor = FetchDescriptor<GroceryItem>()
         return try modelContext.fetch(descriptor)
     }

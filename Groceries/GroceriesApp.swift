@@ -1,5 +1,7 @@
 import SwiftUI
 import SwiftData
+import Domain
+import Store
 
 @main
 struct GroceriesApp: App {

@@ -1,3 +1,5 @@
+import Domain
+
 struct OpenGroceriesIntentViewModel {
     
     private let groceryLoader: any GroceryLoader
